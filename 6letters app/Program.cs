@@ -13,13 +13,21 @@ Be mindful of changing requirements like a different maximum combination length,
 Don't spend too much time on this. When submitting the exercise, briefly write down where you would improve the code if you were given more time.
 */
 
-//So to form 6 character string we need to take 1+5 or 2+4 or 3+3
+// So to form 6 character string we need to take 1+5 or 2+4 or 3+3
 // We are not counting 6+0 because combination requires at least two parts to be connected
 // first of all we need to read all data from file
 
 string[] dataFromTxtFile = System.IO.File.ReadAllLines(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Data\\6letters (1).txt"));
 
-PrintList(CreateCombinationList(dataFromTxtFile, 1, 5));
+//than we need to create lists of characters
+var combinationListOneAndFive =  CreateCombinationList(dataFromTxtFile, 1, 5);
+var combinationListTwoAndFour = CreateCombinationList(dataFromTxtFile, 2, 4);
+var combinationListThreeAndThree = CreateCombinationList(dataFromTxtFile, 3, 3);
+
+//and print these lists
+PrintList(combinationListOneAndFive);
+PrintList(combinationListTwoAndFour);
+PrintList(combinationListThreeAndThree);
 
 //this function is responsible for creation of lists which will contain only specific number of chars
 static IEnumerable<string> CreateListOfCharacters(string[] data, short numberOfChars) {
@@ -43,3 +51,5 @@ struct CombinedWord {
   public string FirstWord { get; set; }
   public string SecondWord { get; set; }
 }
+
+//I would improve the efficiency of application by applying multi thread logic
