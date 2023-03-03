@@ -28,6 +28,11 @@ static IEnumerable<string> CreateListOfCharacters(string[] data, short numberOfC
   return data.Where(str => str.Length == numberOfChars).ToList();
 }
 
+//this function will create enumeration of combined words by specifing lenght of chars that one want to combine (1-5 in our case)
+static IEnumerable<CombinedWord> CreateCombinationList(string[] data, short firstNumber, short secondNumber) {
+  return CreateListOfCharacters(data, firstNumber).SelectMany(s => CreateListOfCharacters(data, secondNumber).Select(c => new CombinedWord { FirstWord = s, SecondWord = c })).Distinct();
+}
+
 //this struct will be responsible for containing combined word
 struct CombinedWord {
   public string FirstWord { get; set; }
