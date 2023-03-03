@@ -19,8 +19,8 @@ Don't spend too much time on this. When submitting the exercise, briefly write d
 
 string[] dataFromTxtFile = System.IO.File.ReadAllLines(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Data\\6letters (1).txt"));
 
-foreach (var item in CreateListOfCharacters(dataFromTxtFile,3)) {
-  Console.WriteLine(item);
+foreach (var item in CreateCombinationList(dataFromTxtFile,1,5)) {
+  Console.WriteLine($"{item.FirstWord}+{item.SecondWord}={item.FirstWord+item.SecondWord}");
 }
 
 //this function is responsible for creation of lists which will contain only specific number of chars
