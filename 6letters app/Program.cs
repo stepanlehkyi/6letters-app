@@ -27,3 +27,9 @@ foreach (var item in CreateListOfCharacters(dataFromTxtFile,3)) {
 static IEnumerable<string> CreateListOfCharacters(string[] data, short numberOfChars) {
   return data.Where(str => str.Length == numberOfChars).ToList();
 }
+
+//this struct will be responsible for containing combined word
+struct CombinedWord {
+  public string FirstWord { get; set; }
+  public string SecondWord { get; set; }
+}
