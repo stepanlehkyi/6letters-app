@@ -19,9 +19,7 @@ Don't spend too much time on this. When submitting the exercise, briefly write d
 
 string[] dataFromTxtFile = System.IO.File.ReadAllLines(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Data\\6letters (1).txt"));
 
-foreach (var item in CreateCombinationList(dataFromTxtFile,1,5)) {
-  Console.WriteLine($"{item.FirstWord}+{item.SecondWord}={item.FirstWord+item.SecondWord}");
-}
+PrintList(CreateCombinationList(dataFromTxtFile, 1, 5));
 
 //this function is responsible for creation of lists which will contain only specific number of chars
 static IEnumerable<string> CreateListOfCharacters(string[] data, short numberOfChars) {
@@ -31,6 +29,13 @@ static IEnumerable<string> CreateListOfCharacters(string[] data, short numberOfC
 //this function will create enumeration of combined words by specifing lenght of chars that one want to combine (1-5 in our case)
 static IEnumerable<CombinedWord> CreateCombinationList(string[] data, short firstNumber, short secondNumber) {
   return CreateListOfCharacters(data, firstNumber).SelectMany(s => CreateListOfCharacters(data, secondNumber).Select(c => new CombinedWord { FirstWord = s, SecondWord = c })).Distinct();
+}
+
+//this function will print into console enumeration of CombinedWord 
+static void PrintList(IEnumerable<CombinedWord> list) {
+  foreach (var word in list) {
+    Console.WriteLine($"{word.FirstWord}+{word.SecondWord}={word.FirstWord + word.SecondWord}");
+  }
 }
 
 //this struct will be responsible for containing combined word
